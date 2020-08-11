@@ -20,6 +20,14 @@ app.use(cors())
 // make router
 app.use('/api/v1', router)
 
+app.use((err, res) => {
+  res.json({
+    status: 404,
+    message: 'URL Not Found'
+  })
+  console.log(err)
+})
+
 const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`server is running ${PORT}`)

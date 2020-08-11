@@ -68,7 +68,7 @@ const product = {
         })
         .catch((err) => {
           const massage = {
-            message: `Column ${sort} found`
+            message: `Column ${sort} not found`
           }
           res.json(massage)
           console.log(err)
@@ -138,9 +138,9 @@ const product = {
       updatedAt: new Date()
     }
     productModels.updateProduct(id, data)
-      .then((result) => {
-        const resultProduct = result.affectedRows
-        helper.responseGetAll(res, resultProduct, 200)
+      .then(() => {
+        // const resultProduct = result.affectedRows
+        helper.responseGetAll(res, data, 200)
       })
       .catch((err) => {
         console.log(err)
@@ -149,8 +149,10 @@ const product = {
   deleteProduct: (req, res) => {
     const id = req.params.id
     productModels.deleteProduct(id)
-      .then((result) => {
-        const resultProduct = result.affectedRows
+      .then(() => {
+        const resultProduct = {
+          message: `Delete Data success `
+        }
         helper.responseGetAll(res, resultProduct, 200)
       })
       .catch((err) => {
@@ -173,10 +175,9 @@ const product = {
       qty
     }
     productModels.insertProduct(data)
-      .then((result) => {
-        const resultProduct = result.affectedRows
-        console.log(result)
-        helper.responseGetAll(res, resultProduct, 200)
+      .then(() => {
+        // const resultProduct = result.affectedRows
+        helper.responseGetAll(res, data, 200)
       })
       .catch((err) => {
         console.log(err)

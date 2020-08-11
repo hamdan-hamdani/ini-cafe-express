@@ -22,5 +22,6 @@ module.exports = {
     resultPrint.result = result
     resultPrint.err = err || null
     return res.status(resultPrint.status_code).json(resultPrint)
-  }
+  },
+  // responseInsert: (res, res)
 }
